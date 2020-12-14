@@ -7,11 +7,13 @@ import { UserUploadComponent } from './user-upload/user-upload.component';
 import { UserUploadService } from './user-upload.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { UserViewComponent } from './user-view/user-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserUploadComponent
+    UserUploadComponent,
+    UserViewComponent
   ],
   imports: [
     BrowserModule,

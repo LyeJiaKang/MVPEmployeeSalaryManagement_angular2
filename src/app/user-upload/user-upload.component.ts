@@ -17,15 +17,12 @@ export class UserUploadComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public createUserUpload(id){
-      this.service.doUserUpload(id);
-  }
-
  public fileChange(element) {
    if(element == null){
     this.message = 'Please select a input file.'
    }else{
     this.service.doUserUpload(element).subscribe(data => {
+      this.message = " ";
       if(data == 'true'){
        this.message = 'Data file processed successfully.';
       }else{

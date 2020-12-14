@@ -1,0 +1,60 @@
+
+<h1>View User</h1>
+<form #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
+<form class="form-inline">
+    <div class="form-group mb-2">
+<h5>Filter Options</h5>
+</div>
+</form>
+<form class="form-inline">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Min Salary</label>
+    <div class="form-group mb-2">
+      <input type="text" class="form-control" id="minSalary" value = "" (input)="minSalary=$event.target.value">
+    </div>
+    </form>
+    <form class="form-inline">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Max Salary</label>
+        <div class="form-group mb-2">
+          <input type="text" class="form-control" id="maxSalary" value = "" (input)="maxSalary=$event.target.value">
+        </div>
+        </form>
+        <form class="form-inline">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Sort</label>
+            <div class="form-group mb-2">
+              <input type="text" class="form-control" id="sort" value = "" (input)="sort=$event.target.value">
+            </div>
+            </form>
+            <form class="form-inline">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Order (+ for Ascending) (- for Descending)</label>
+                <div class="form-group mb-2">
+                  <input type="text" class="form-control" id="order" value = "" (input)="order=$event.target.value">
+                </div>
+                </form>
+            
+            
+        <button type="button" class="btn btn-primary" type="submit">Filter</button> {{errorMessage}}
+    </form>
+    <br>
+    <button type="button" class="btn btn-primary" type="button" (click)="prePage()">Previous page</button> &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary" type="button" (click)="nextPage()">Next page</button>
+
+
+<div class="table-responsive-md">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Login</th>
+              <th scope="col">Name</th>
+              <th scope="col">Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let data of result">
+                  <td>{{data.id}}</td>
+                  <td>{{data.login}}</td>
+                  <td>{{data.name}}</td>
+                  <td>{{data.salary}}</td>
+          </tbody>
+    </table>
+  </div>
