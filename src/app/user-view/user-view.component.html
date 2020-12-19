@@ -1,6 +1,6 @@
 
 <h1>View User</h1>
-<form #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
+<form (ngSubmit)="onSubmit()" novalidate>
 <form class="form-inline">
     <div class="form-group mb-2">
 <h5>Filter Options</h5>
@@ -9,25 +9,29 @@
 <form class="form-inline">
     <label for="staticEmail" class="col-sm-2 col-form-label">Min Salary</label>
     <div class="form-group mb-2">
-      <input type="text" class="form-control" id="minSalary" value = "" (input)="minSalary=$event.target.value">
+      <input type="text" class="form-control" id="minSalary" value = "" (input)="minSalary=$event.target.value" required>
     </div>
     </form>
     <form class="form-inline">
         <label for="staticEmail" class="col-sm-2 col-form-label">Max Salary</label>
         <div class="form-group mb-2">
-          <input type="text" class="form-control" id="maxSalary" value = "" (input)="maxSalary=$event.target.value">
+          <input type="text" class="form-control" id="maxSalary" value = "" (input)="maxSalary=$event.target.value" required>
         </div>
         </form>
         <form class="form-inline">
             <label for="staticEmail" class="col-sm-2 col-form-label">Sort</label>
             <div class="form-group mb-2">
-              <input type="text" class="form-control" id="sort" value = "" (input)="sort=$event.target.value">
+              <input type="text" class="form-control" id="sort" value = "" (input)="sort=$event.target.value" required>
             </div>
             </form>
             <form class="form-inline">
-                <label for="staticEmail" class="col-sm-2 col-form-label">Order (+ for Ascending) (- for Descending)</label>
+                <label for="staticEmail" class="col-sm-2 col-form-label">Order</label>
                 <div class="form-group mb-2">
-                  <input type="text" class="form-control" id="order" value = "" (input)="order=$event.target.value">
+                  <select id="order" name="order" class="form-control" (input)="order=$event.target.value" required>
+                    <option value="">Select Order</option>
+                    <option value="+">Ascending (+)</option>
+                    <option value="-">Descending (-)</option>
+                  </select>
                 </div>
                 </form>
             
@@ -54,7 +58,7 @@
                   <td>{{data.id}}</td>
                   <td>{{data.login}}</td>
                   <td>{{data.name}}</td>
-                  <td>{{data.salary}}</td>
+                  <td>$ {{data.salary}}</td>
           </tbody>
     </table>
   </div>

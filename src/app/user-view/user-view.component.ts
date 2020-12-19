@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { UserViewService } from '../user-view.service';
-import {NgForm} from '@angular/forms';
+
 
 @Component({
   selector: 'app-user-view',
   templateUrl: './user-view.component.html',
-  styleUrls: ['./user-view.component.css']
+  styleUrls: ['./user-view.component.css'],
 })
 export class UserViewComponent implements OnInit {
 
   constructor(private service:UserViewService) { }
-  minSalary : string;
-  maxSalary : string;
+  minSalary : number;
+  maxSalary : number;
   sort:string;
   order:string;
   result:any;
@@ -24,18 +24,28 @@ export class UserViewComponent implements OnInit {
 
   onSubmit(){
     this.result = null;
-    this.service.filterUser(this.minSalary,this.maxSalary,this.order,this.sort,0,30).subscribe(data => {
-      this.result = data;
-   },
-   response =>{
-   if(response.status!= 200){
-    this.errorMessage = "Error";
-    
-   }}
-   );
+    this.errorMessage  = " ";
+    if(typeof(this.order) != "undefined"){
+     
+      this.service.filterUser(this.minSalary,this.maxSalary,this.order,this.sort,0,30).subscribe(data => {
+        this.result = data;
+        if(this.result.length == 0){
+          this.errorMessage = "No record available.";
+        }
+     },
+     response =>{
+     if(response.status!= 200){
+      this.errorMessage = "Error 200.";
+      
+     }}
+     );
+    }else{
+      this.errorMessage = "Please select the order option.";
+    }
   }
 
   public nextPage(){
+    
     if(this.result!=null){
       if(this.result.length == 30){
         this.currentPage= this.currentPage +1;
